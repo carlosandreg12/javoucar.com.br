@@ -369,8 +369,17 @@ function showAlertModal(placa, modelo, cor, mensagem) {
     modal.classList.add('active');
     overlay.classList.add('active');
     
-    // Tocar os três bips de alerta
+    // Tocar os três bips de alerta e vibrar o dispositivo
     SoundSystem.playAlertBeeps();
+    vibrarDispositivo();
+}
+
+// Modificar a função vibrarDispositivo para um padrão mais notável
+function vibrarDispositivo() {
+    if ('vibrate' in navigator) {
+        // Padrão de vibração: 200ms vibra, 100ms para, 200ms vibra
+        navigator.vibrate([200, 100, 200]);
+    }
 }
 
 // Modificar o evento de confirmação para incluir o bip
@@ -395,14 +404,12 @@ document.getElementById('alertForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const placa = e.target.elements[0].value.toUpperCase();
     
-    // Corrigir a verificação do veículo usando a propriedade correta 'placa'
     const veiculoEncontrado = state.vehicles.find(v => v.placa === placa);
     
     if (!veiculoEncontrado) {
         const cadastrar = confirm('Veículo não encontrado. Deseja cadastrar um novo veículo?');
         if (cadastrar) {
             showSection(vehicleSection);
-            // Preencher a placa automaticamente no formulário de cadastro
             document.querySelector('#vehicleForm input[placeholder="Placa"]').value = placa;
         }
         return;
