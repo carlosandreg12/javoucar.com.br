@@ -1,0 +1,21 @@
+{
+  "name": "JávouCar",
+  "short_name": "JávouCar",
+  "description": "Sistema de Cadastro e Alertas para Veículos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF0000",
+  "icons": [
+    {
+      "src": "assets/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
